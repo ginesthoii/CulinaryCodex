@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CulinaryCodex</title>
+  <style>
+    body{font-family:system-ui,sans-serif;margin:2rem;max-width:900px}
+    .card{border:1px solid #ddd;border-radius:12px;padding:12px;margin:8px 0}
+  </style>
+</head>
+<body>
+  <h1>CulinaryCodex</h1>
+  <p>Minimal front-end hitting the Flask API.</p>
+  <div id="grid"></div>
+
+  <script>
+    const API = "http://127.0.0.1:5000/api";
+    const grid = document.getElementById('grid');
+
+    async function load(){
+      try {
+        const r = await fetch(`${API}/recipes`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const items = await r.json();
+
+        if (!Array.isArray(items) || items.length === 0) {
+          grid.innerHTML = `<div class="card">No recipes returned. Try reseeding:
+            <code>cd backend && source .venv/bin/activate && python3 seeds.py</code></div>`;
+          return;
+        }
+
+        grid.innerHTML = "";
+        items.forEach(x => {
+          const d = document.createElement('div');
+          d.className = "card";
+          d.innerHTML = `
+            <strong>${x.title}</strong><br/>
+            <small>${x.civilization} • ${x.period} • ${x.dish_type}</small>
+            <p>${x.story_blurb}</p>
+            <button data-id="${x.id}">View</button>
+          `;
+          grid.appendChild(d);
+        });
+      } catch (err) {
+        console.error("Fetch failed:", err);
+        grid.innerHTML = `<div class="card">
+          Fetch failed (${err.message}). Is Flask running at <code>${API}</code>?
+          If you changed ports, add your origin to <code>backend/.env</code> CORS_ORIGINS and restart Flask.
+        </div>`;
+      }
+    }
+
+    document.addEventListener('click', async (e) => {
+      if (e.target.tagName === 'BUTTON' && e.target.dataset.id) {
+        const id = e.target.dataset.id;
+        const rr = await fetch(`${API}/recipes/${id}`);
+        if (!rr.ok) return alert(`Failed to load recipe ${id} (HTTP ${rr.status})`);
+        const full = await rr.json();
+        alert(full.title + "\n\nIngredients:\n- " +
+          full.ingredients.map(i => `${i.name} ${i.qty ?? ""} ${i.unit ?? ""}`).join("\n- "));
+      }
+    });
+
+    load();
+  </script>
+</body>
+</html>
