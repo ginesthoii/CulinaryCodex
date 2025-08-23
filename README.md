@@ -1,212 +1,116 @@
+<div align="center">
+
+![Image](https://github.com/user-attachments/assets/cf26e871-55f3-42fb-aa53-baaac91cfdf0)
+
 # CulinaryCodex
 
-Medieval Morsel
-Ancient Appetites
- history + food + automation + security + design.
- Python, APIs, data viz, maybe even NLP if you parse ancient texts.
-showcase Python (backend), Django/Flask (API), React or plain HTML/CSS (frontend), plus optional ML if you do recipe recommendation.
+</div>
 
-Ancient Recipes Project Ideas
-	1.	Digital Ancient Cookbook (Secure Archive)
-	•	Scrape or collect ancient recipes (Roman, Egyptian, Mesopotamian, etc.) and store them in a searchable database.
-	•	Build a front-end where users can browse by civilization, ingredient, or type (e.g., bread, stew, drink).
-	•	Add an “authorship protection” twist → think encrypted recipe cards or watermarking, tying into your StoryShield vibe.
-	2.	“Cooking Through Time” API
-	•	Make a public API that serves ancient recipes (formatted JSON).
-	•	Example: GET /recipes/rome/bread returns Apicius’s Roman bread recipe with modern substitutions.
-	•	Bonus: Show off backend + API security with rate-limiting, auth tokens, etc.
-	3.	Food Timeline Visualizer
-	•	Interactive timeline app that maps recipes by year/region.
-	•	Could show trade routes (spices, grains, olive oil) and how recipes spread — history + data visualization.
+<br>
 
-Adding Your “Security + Automation” Spin
- 	•	Ingredient Substitution Bot → a Python bot that automatically swaps unavailable ancient ingredients (like garum) with modern ones and emails you a shopping list.
-	•	QR-Code Ancient Menu → generate QR codes that link to random recipes, so you can “order like a Roman” at a dinner party.
+- Ancient recipes meet modern code.  
+- CulinaryCodex is an experiment where food history (Roman bread, medieval syrups, stews with garum) meets software design.
+- Part cooking-history project, part coding sandbox, with a security twist.
+- This project is inspired by food historians, the Tasting History YouTube channel (I adore you, Max Miller), and the idea that coding projects can be fun, flavorful, and give us a taste of the past.
+
+<br>
+
+<div align="center">
+	
+[![Python](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org/) [![Flask](https://img.shields.io/badge/flask-3.0-lightgrey)](https://flask.palletsprojects.com/) [![Security](https://img.shields.io/badge/security-CORS%20%7C%20rate--limit%20%7C%20dotenv-green)]()
+
+</div>
 
 
- Project Concept: Tasting History Digital Archive
+---
 
-Think of it as Tasting History meets GitHub + Cybersecurity.
+## What it is
 
-Core Features
-	1.	Recipe Archive
-	•	Collect recipes from Tasting History episodes (with proper credit & links) + other historical cookbooks (Apicius, medieval manuscripts, etc.).
-	•	Store them in a structured database (ingredients, origin, time period, source).
-	2.	Interactive Front-End
-	•	Users can filter recipes by civilization (Rome, Egypt, Aztec, etc.), ingredient, or time period.
-	•	Add a “surprise me” button → random recipe from the archive.
-	3.	Automation Twist
-	•	Python bot that generates a modernized shopping list for any recipe (swaps “garum” for “fish sauce,” etc.).
-	•	Option to export as CSV or send it via email.
-	4.	Security Twist
-	•	Protect recipes with “digital seals” (signatures / watermarks).
-	•	Maybe even a “recipe vault” feature where you encrypt your personal notes or tweaks.
-	5.	Fun Extras
-	•	Generate QR codes → scan one at dinner and get a random ancient recipe.
-	•	Timeline visualization → see how recipes evolved over time.
+- A small API + front end that serves historical recipes  
+- Browse dishes by civilization (Rome, Medieval Europe, etc.), view ingredients, and follow steps  
+- Built to be expandable — today it is bread and stew, tomorrow it could be a whole timeline of ancient cuisines  
 
+Instead of collecting recipe cards in a box, recipes are stored in JSON, Flask, and SQLite.
 
+---
 
- First Steps
-	•	Start simple: a JSON/CSV dataset of 10–15 recipes from Tasting History.
-	•	Build a Flask or Django app to serve them via an API.
-	•	Add front-end filters/search.
-	•	Then expand with automation (shopping list bot, QR codes).
+## Why I built it
+
+1. History is fascinating, especially food history. Ancient Rome had sourdoughs, medieval kitchens had syrups, and all of it connects us to how people actually lived their day-to-day lives.  
+2. I love to cook and I wanted to combine my love of history, cooking and coding/automation. 
+3. I wanted a portfolio project that demonstrates:  
+   - Backend with Flask + SQLAlchemy  
+   - Frontend with vanilla JavaScript + fetch API  
+   - Secure coding habits (CORS, rate limits, dotenv configs)  
 
 
+---
 
+## Features (current)
 
+- Browse seeded recipes via a simple front end  
+- Roman Panem (bread) — inspired by archaeological loaves from Pompeii  
+- Soldier’s stew — lentils and garum, hearty Roman cooking  
+- Medieval sapa syrup — sweet reduced grape must  
 
+---
 
+## Roadmap
 
- Project: Tasting History–Style Ancient Cookbook (with Shopping List + Substitutions)
+- Additional seeded recipes across civilizations  
+- Filters (by era, dish type, difficulty)  
+- Shopping list generator with modern substitutions (e.g., garum → fish sauce)  
+- QR codes to pull recipes up on a phone  
+- Timeline visualization of cuisines across history  
+- Security hardening: input validation, CORS, rate limiting
 
-1) Core UX (what users can do)
-	•	Browse & filter by civilization, period, dish type, difficulty.
-	•	Open a recipe → see story blurb, ingredients (with suggested modern swaps), steps, source.
-	•	One-click “Add to list” per ingredient (or “Add all”).
-	•	Shopping list drawer with deduping (3× garlic → “garlic (3 cloves)”), unit normalization, and export (CSV/print/copy).
-	•	Substitution toggle: garum → fish sauce, silphium → asafoetida, etc. Users can flip between “Historic” and “Modern Pantry.”
-	•	Attribution: If it’s inspired by Tasting History, show credit + episode link. Keep your own wording; don’t copy their full text.
+---
 
-Small delight: a “Surprise me (Roman)” button that picks a random Roman recipe.
+## Tech Stack
 
-⸻
+- Backend: Flask, SQLAlchemy, python-dotenv  
+- Frontend: HTML, CSS, vanilla JavaScript  
+- Database: SQLite (lightweight, easy to swap later)  
+- Security: CORS controls, basic rate limiting, environment variables
 
-2) Data model (simple, future-proof)
+---
 
-Tables/Collections
-	•	recipes
-	•	id, title, civilization, period, dish_type, difficulty, story_blurb, steps, image_url, source_id, author_notes
-	•	ingredients
-	•	id, name, category
-	•	recipe_ingredients
-	•	recipe_id, ingredient_id, quantity, unit, notes, is_core
-	•	substitutions
-	•	ingredient_id, modern_name, ratio (e.g., 1.0), notes
-	•	sources
-	•	id, label (e.g., “Tasting History – Episode 142”), url, license, credit_required (bool)
-	•	users (optional for saved lists)
-	•	id, email_hash, display_name
-	•	shopping_list
-	•	user_id, items: [{ingredient_id/name, qty, unit, recipe_id}]
+<div align="center">
 
-Example substitution rows
-	•	garum → fish sauce (1:1) — “start with ¾× and adjust”
-	•	silphium → asafoetida (pinch) — “aromatic substitute”
-	•	sapa (reduced must) → balsamic reduction (1:1) — “sweet-acidic”
+<img width="593" height="436" alt="Image" src="https://github.com/user-attachments/assets/bed7fc22-d41a-4cf1-8a40-9935d228555b" />
 
-⸻
+</div>
 
-3) Tech stack (fast + comfy)
-	•	Backend: Python Flask (light) or Django (built-ins + admin).
-	•	API: REST endpoints (/recipes, /recipes/:id, /shopping-list, /subs/:ingredient).
-	•	DB: SQLite to start → Postgres later.
-	•	Frontend: Plain HTML + Alpine/HTMX or React if you want.
-	•	Auth (optional): Anonymous lists via localStorage; upgrade to simple email login later.
-	•	Styling: Tailwind or Bootstrap.
-	•	Deploy: Render/Heroku/Fly.io.
-
-⸻
-
-4) Minimal API design
-
-GET /recipes?civ=rome&search=bread
-GET /recipes/:id (returns ingredients + resolved substitutions)
-POST /shopping-list/add { item: { name, qty, unit, recipe_id } }
-GET /shopping-list (for current session/user)
-POST /substitutions/resolve { name: "garum", mode: "modern" } → { substitute: "fish sauce", ratio: 1 }
-
-No auth needed for MVP if you use localStorage for the list and keep a serverless/edge cache of recipes.
-
-⸻
-
-5) MVP first-pass (weekend-build friendly)
-	1.	Seed 10–15 recipes (mix your originals + a few historically inspired).
-	2.	Build Recipe List → Recipe Detail page.
-	3.	Add Add to Shopping List (single + add-all).
-	4.	Implement substitution toggle on the recipe page.
-	5.	Shopping list dedupe + unit merge (basic: sum grams/cups when units match).
-	6.	Export list (copy/print/CSV).
-
-Then iterate:
-	•	Search + filters, pretty images, episode links, “Surprise me” button.
-	•	User saves (localStorage first, login later).
-	•	QR code: generate a QR from the shopping list for quick phone access.
-
-⸻
-
-6) Attribution & content ethics (important)
-	•	For “Tasting History–inspired” entries, write your own summaries & steps, and link/credit the episode in sources.
-	•	Avoid posting verbatim scripts or any copyrighted imagery you don’t have rights to. Screenshots → no; link to YouTube instead.
-	•	Public-domain historical texts (e.g., translations of Apicius) are generally safe—still provide source + translator.
-
-⸻
-
-7) Security touches (on-brand for you)
-	•	Rate limit write endpoints (shopping list) to prevent spam.
-	•	Input validation on quantity/unit fields.
-	•	If you add accounts later: CSRF protection, SameSite cookies, and basic auth hardening.
-	•	CORS locked to your domain.
-
-⸻
-
-8) Little datasets to get you rolling
-
-Recipe JSON (trimmed)
-{
-  "id": "rome-panem",
-  "title": "Roman Panem (Bread)",
-  "civilization": "Rome",
-  "period": "1st c. CE",
-  "dish_type": "Bread",
-  "difficulty": "Easy",
-  "story_blurb": "Everyday Roman bread inspired by archaeological loaves from Pompeii.",
-  "ingredients": [
-    {"name": "wheat flour", "qty": 500, "unit": "g", "is_core": true},
-    {"name": "water", "qty": 320, "unit": "ml"},
-    {"name": "salt", "qty": 10, "unit": "g"},
-    {"name": "sourdough starter", "qty": 100, "unit": "g"}
-  ],
-  "steps": [
-    "Mix flour and water; autolyse 30 min.",
-    "Add salt and starter; knead 8–10 min.",
-    "Ferment until doubled; shape; proof; bake 230°C ~30–35 min."
-  ],
-  "source_id": "src_th_ep142"
-}
+---
 
 
 
-Substitutions JSON
+## Running locally
 
-[
-  {"ingredient": "garum", "modern_name": "fish sauce", "ratio": 1.0, "notes": "Start at 0.75×"},
-  {"ingredient": "sapa", "modern_name": "balsamic reduction", "ratio": 1.0},
-  {"ingredient": "silphium", "modern_name": "asafoetida", "ratio": 0.1, "notes": "Pinch only"}
-]
+Clone and set up the backend:
+
+```bash
+git clone https://github.com/ginesthoii/culinarycodex
+cd culinarycodex/backend
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python3 seeds.py
+flask --app app run
+
+The backend runs at:
+http://127.0.0.1:5000/api
+
+Start the frontend:
+cd ../frontend
+python3 -m http.server 5500
+
+The frontend opens at:
+http://127.0.0.1:5500
 
 
 
 
-ancient-recipes/
-  README.md
-  data/
-    recipes.json
-    substitutions.json
-  api/
-    app.py              # Flask/Django API
-    models.py
-  web/
-    index.html          # list + filters
-    recipe.html         # detail page
-    js/
-      list.js           # shopping list (localStorage + API)
-      subs.js           # substitution toggle
-  scripts/
-    seed.py             # load JSON into DB
-  docs/
-    SOURCES.md          # links/credits (Tasting History episodes, texts)
 
-
- 
