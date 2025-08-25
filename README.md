@@ -1,8 +1,12 @@
+![WIP](https://img.shields.io/badge/status-Work_in_Progress-yellow?style=for-the-badge&logoColor=white)
+
 <div align="center">
 
-![Image](https://github.com/user-attachments/assets/cf26e871-55f3-42fb-aa53-baaac91cfdf0)
 
-# CulinaryCodex
+  <h1>CulinaryCodex</h1>
+  
+  <img src="https://github.com/user-attachments/assets/cf26e871-55f3-42fb-aa53-baaac91cfdf0" alt="CulinaryCodex Banner" width="40%"/>
+
 
 </div>
 
